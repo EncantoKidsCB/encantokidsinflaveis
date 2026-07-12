@@ -1,1 +1,346 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Reservas - Encanto Kids Infláveis</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#f7f9fc;
+}
+
+header{
+background:white;
+box-shadow:0 2px 10px rgba(0,0,0,.1);
+position:sticky;
+top:0;
+z-index:1000;
+}
+
+.navbar{
+max-width:1200px;
+margin:auto;
+padding:15px 20px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.logo{
+font-size:22px;
+font-weight:700;
+color:#0d6efd;
+}
+
+.menu{
+display:flex;
+gap:20px;
+}
+
+.menu a{
+text-decoration:none;
+color:#333;
+font-weight:600;
+}
+
+.hero{
+background:linear-gradient(135deg,#0d6efd,#ff7b00);
+color:white;
+text-align:center;
+padding:70px 20px;
+}
+
+.hero h1{
+font-size:45px;
+margin-bottom:10px;
+}
+
+.container{
+max-width:900px;
+margin:auto;
+padding:50px 20px;
+}
+
+.card{
+background:white;
+padding:30px;
+border-radius:15px;
+box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+.produto{
+background:#f4f7ff;
+padding:20px;
+border-radius:10px;
+margin-bottom:25px;
+}
+
+.produto h3{
+color:#0d6efd;
+margin-bottom:10px;
+}
+
+.form-group{
+margin-bottom:15px;
+}
+
+label{
+display:block;
+margin-bottom:6px;
+font-weight:600;
+}
+
+input, textarea{
+width:100%;
+padding:12px;
+border:1px solid #ccc;
+border-radius:8px;
+}
+
+textarea{
+resize:vertical;
+}
+
+.btn{
+width:100%;
+padding:15px;
+border:none;
+border-radius:10px;
+background:#ff7b00;
+color:white;
+font-size:17px;
+font-weight:700;
+cursor:pointer;
+}
+
+.btn:hover{
+opacity:.9;
+}
+
+footer{
+background:#0d6efd;
+color:white;
+text-align:center;
+padding:35px;
+margin-top:50px;
+}
+
+.whatsapp{
+position:fixed;
+right:20px;
+bottom:20px;
+width:65px;
+height:65px;
+background:#25D366;
+border-radius:50%;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:30px;
+text-decoration:none;
+color:white;
+box-shadow:0 5px 15px rgba(0,0,0,.3);
+}
+
+@media(max-width:768px){
+
+.hero h1{
+font-size:32px;
+}
+
+.menu{
+font-size:14px;
+gap:10px;
+}
+
+}
+
+</style>
+</head>
+<body>
+
+<header>
+
+<div class="navbar">
+
+<div class="logo">
+🎈 Encanto Kids Infláveis
+</div>
+
+<div class="menu">
+<a href="index.html">Início</a>
+<a href="brinquedos.html">Brinquedos</a>
+<a href="reservas.html">Reservas</a>
+</div>
+
+</div>
+
+</header>
+
+<section class="hero">
+
+<h1>Reserva de Brinquedos</h1>
+
+<p>Preencha os dados para solicitar sua reserva.</p>
+
+</section>
+
+<div class="container">
+
+<div class="card">
+
+<div class="produto">
+
+<h3>Produto Selecionado</h3>
+
+<p id="produto"></p>
+<p id="valor"></p>
+
+</div>
+
+<div class="form-group">
+<label>Nome Completo</label>
+<input type="text" id="nome">
+</div>
+
+<div class="form-group">
+<label>Telefone</label>
+<input type="text" id="telefone">
+</div>
+
+<div class="form-group">
+<label>Cidade</label>
+<input type="text" id="cidade">
+</div>
+
+<div class="form-group">
+<label>Estado</label>
+<input type="text" id="estado">
+</div>
+
+<div class="form-group">
+<label>Endereço do Evento</label>
+<input type="text" id="endereco">
+</div>
+
+<div class="form-group">
+<label>Data do Evento</label>
+<input type="date" id="data">
+</div>
+
+<div class="form-group">
+<label>Horário do Evento</label>
+<input type="text" id="horario" placeholder="Ex: 14:00">
+</div>
+
+<div class="form-group">
+<label>Observações</label>
+<textarea id="obs" rows="4"></textarea>
+</div>
+
+<button class="btn" onclick="enviarReserva()">
+Finalizar Reserva pelo WhatsApp
+</button>
+
+</div>
+
+</div>
+
+<footer>
+
+<h3>Encanto Kids Infláveis</h3>
+
+<p>A diversão que transforma sua festa!</p>
+
+<p>📍 Casa Branca-SP e Região</p>
+
+<p>📸 @encantokidsinflaveis</p>
+
+<p>📱 (19) 98904-6698</p>
+
+</footer>
+
+<a class="whatsapp"
+href="https://wa.me/5519989046698"
+target="_blank">
+📱
+</a>
+
+<script>
+
+const produto = localStorage.getItem('produto') || 'Nenhum produto selecionado';
+const valor = localStorage.getItem('valor') || 'Consulte';
+
+document.getElementById('produto').innerText = produto;
+document.getElementById('valor').innerText = 'Valor: R$ ' + valor;
+
+function enviarReserva(){
+
+let nome = document.getElementById('nome').value;
+let telefone = document.getElementById('telefone').value;
+let cidade = document.getElementById('cidade').value;
+let estado = document.getElementById('estado').value;
+let endereco = document.getElementById('endereco').value;
+let data = document.getElementById('data').value;
+let horario = document.getElementById('horario').value;
+let obs = document.getElementById('obs').value;
+
+if(!nome || !telefone || !cidade || !estado || !endereco || !data){
+
+alert('Preencha todos os campos obrigatórios.');
+
+return;
+
+}
+
+let mensagem =
+`🎈 NOVA SOLICITAÇÃO DE RESERVA
+
+Nome: ${nome}
+Telefone: ${telefone}
+
+Cidade: ${cidade}
+Estado: ${estado}
+
+Endereço do Evento:
+${endereco}
+
+Data do Evento:
+${data}
+
+Horário:
+${horario}
+
+Produto:
+${produto}
+
+Valor:
+R$ ${valor}
+
+Observações:
+${obs}`;
+
+let url =
+"https://wa.me/5519989046698?text=" +
+encodeURIComponent(mensagem);
+
+window.open(url,'_blank');
+
+}
+
+</script>
+
+</body>
+</html>
