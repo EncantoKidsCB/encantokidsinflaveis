@@ -195,8 +195,22 @@ color:white;
 
 <div class="card">
 
-<div class="imagem">
-<img src="pulapula.jpg" alt="Pula-Pula">
+<div class="slider">
+
+<button class="seta esquerda" onclick="trocar('pulapula',-1)">
+❮
+</button>
+
+<img
+id="pulapula"
+src="pulapula1.jpg"
+onclick="abrirImagem(this.src)"
+style="cursor:pointer;">
+
+<button class="seta direita" onclick="trocar('pulapula',1)">
+❯
+</button>
+
 </div>
 
 <div class="content">
