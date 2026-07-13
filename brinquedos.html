@@ -695,8 +695,21 @@ document.getElementById('contador').innerText=
 reserva.length;
 
 }
+<script>
+
+function abrirImagem(src){
+document.getElementById('modal').style.display='flex';
+document.getElementById('imagemModal').src=src;
+}
+
+function fecharImagem(){
+document.getElementById('modal').style.display='none';
+}
 
 </script>
-
+</script>
+<div id="modal" class="modal" onclick="fecharImagem()">
+<img id="imagemModal">
+</div>
 </body>
 </html>
