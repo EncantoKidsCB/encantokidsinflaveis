@@ -6,7 +6,7 @@
 
 <title>Brinquedos - Encanto Kids Infláveis</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="favicon.png">
 
 <style>
 
@@ -14,69 +14,55 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:'Poppins',sans-serif;
+font-family:Arial,sans-serif;
 }
 
 body{
-background:#f7f9fc;
+background:#f5f7fa;
 }
 
 header{
 background:white;
+padding:15px 20px;
 box-shadow:0 2px 10px rgba(0,0,0,.1);
+display:flex;
+justify-content:space-between;
+align-items:center;
 position:sticky;
 top:0;
 z-index:1000;
 }
 
-.navbar{
-max-width:1200px;
-margin:auto;
-padding:15px 20px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-}
-
 .logo{
 font-size:22px;
-font-weight:700;
+font-weight:bold;
 color:#0d6efd;
-}
-
-.menu{
-display:flex;
-gap:20px;
 }
 
 .menu a{
 text-decoration:none;
+margin-left:15px;
+font-weight:bold;
 color:#333;
-font-weight:600;
 }
 
 .hero{
 background:linear-gradient(135deg,#0d6efd,#ff7b00);
 color:white;
 text-align:center;
-padding:70px 20px;
-}
-
-.hero h1{
-font-size:45px;
-margin-bottom:10px;
+padding:60px 20px;
 }
 
 .container{
 max-width:1200px;
 margin:auto;
-padding:60px 20px;
+padding:50px 20px;
 }
 
 .cards{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-gap:30px;
+gap:25px;
 }
 
 .card{
@@ -84,68 +70,61 @@ background:white;
 border-radius:15px;
 overflow:hidden;
 box-shadow:0 5px 15px rgba(0,0,0,.1);
-transition:.3s;
 }
 
-.card:hover{
-transform:translateY(-5px);
-}
-
-.foto{
+.imagem{
 height:250px;
-background:#e5e5e5;
+background:#ddd;
 display:flex;
 align-items:center;
 justify-content:center;
-font-weight:700;
-color:#666;
+font-weight:bold;
 }
 
 .content{
-padding:25px;
+padding:20px;
 }
 
 .content h3{
-margin-bottom:10px;
 color:#0d6efd;
+margin-bottom:10px;
 }
 
 .preco{
-font-size:26px;
-font-weight:700;
+font-size:28px;
+font-weight:bold;
 color:#ff7b00;
 margin:15px 0;
 }
 
-.consulte{
-font-size:24px;
-font-weight:700;
-color:#0d6efd;
-margin:15px 0;
-}
-
-button{
+.btn{
 width:100%;
-padding:15px;
+padding:14px;
 background:#ff7b00;
-border:none;
-border-radius:10px;
 color:white;
-font-weight:700;
-cursor:pointer;
+border:none;
+border-radius:8px;
 font-size:16px;
+font-weight:bold;
+cursor:pointer;
 }
 
-button:hover{
+.btn:hover{
 opacity:.9;
 }
 
-footer{
+.top-actions{
+text-align:center;
+margin-bottom:30px;
+}
+
+.ver-reserva{
 background:#0d6efd;
 color:white;
-text-align:center;
-padding:35px;
-margin-top:50px;
+padding:15px 25px;
+text-decoration:none;
+border-radius:8px;
+font-weight:bold;
 }
 
 .whatsapp{
@@ -162,20 +141,6 @@ align-items:center;
 font-size:30px;
 text-decoration:none;
 color:white;
-box-shadow:0 5px 15px rgba(0,0,0,.3);
-}
-
-@media(max-width:768px){
-
-.hero h1{
-font-size:32px;
-}
-
-.menu{
-font-size:14px;
-gap:10px;
-}
-
 }
 
 </style>
@@ -184,8 +149,6 @@ gap:10px;
 
 <header>
 
-<div class="navbar">
-
 <div class="logo">
 🎈 Encanto Kids Infláveis
 </div>
@@ -193,9 +156,9 @@ gap:10px;
 <div class="menu">
 <a href="index.html">Início</a>
 <a href="brinquedos.html">Brinquedos</a>
-<a href="reservas.html">Reservas</a>
-</div>
-
+<a href="carrinho.html">
+📋 Sua Reserva (<span id="contador">0</span>)
+</a>
 </div>
 
 </header>
@@ -204,17 +167,25 @@ gap:10px;
 
 <h1>Nossos Brinquedos</h1>
 
-<p>Escolha o brinquedo ideal para sua festa.</p>
+<p>Escolha os brinquedos para sua festa.</p>
 
 </section>
 
 <div class="container">
 
+<div class="top-actions">
+
+<a class="ver-reserva" href="carrinho.html">
+📋 Ver Minha Reserva
+</a>
+
+</div>
+
 <div class="cards">
 
 <div class="card">
 
-<div class="foto">
+<div class="imagem">
 FOTO DO PULA-PULA
 </div>
 
@@ -222,15 +193,12 @@ FOTO DO PULA-PULA
 
 <h3>Pula-Pula</h3>
 
-<p>
-Ideal para aniversários, confraternizações e eventos infantis.
-</p>
-
 <div class="preco">
-R$ 149,99 / diária
+R$ 149,99
 </div>
 
-<button onclick="reservar('Pula-Pula','149,99')">
+<button class="btn"
+onclick="adicionar('Pula-Pula',149.99)">
 Reservar Agora
 </button>
 
@@ -240,7 +208,7 @@ Reservar Agora
 
 <div class="card">
 
-<div class="foto">
+<div class="imagem">
 FOTO DO TOBOGÃ
 </div>
 
@@ -248,15 +216,12 @@ FOTO DO TOBOGÃ
 
 <h3>Tobogã Inflável</h3>
 
-<p>
-Diversão garantida para crianças e eventos.
-</p>
-
-<div class="consulte">
-Consulte
+<div class="preco">
+R$ 149,99
 </div>
 
-<button onclick="reservar('Tobogã Inflável','Consulte')">
+<button class="btn"
+onclick="adicionar('Tobogã Inflável',149.99)">
 Reservar Agora
 </button>
 
@@ -266,7 +231,7 @@ Reservar Agora
 
 <div class="card">
 
-<div class="foto">
+<div class="imagem">
 FOTO DO CASTELO
 </div>
 
@@ -274,15 +239,12 @@ FOTO DO CASTELO
 
 <h3>Castelo com Piscina de Bolinhas</h3>
 
-<p>
-Colorido, seguro e perfeito para os pequenos.
-</p>
-
-<div class="consulte">
-Consulte
+<div class="preco">
+R$ 149,99
 </div>
 
-<button onclick="reservar('Castelo com Piscina de Bolinhas','Consulte')">
+<button class="btn"
+onclick="adicionar('Castelo com Piscina de Bolinhas',149.99)">
 Reservar Agora
 </button>
 
@@ -294,21 +256,8 @@ Reservar Agora
 
 </div>
 
-<footer>
-
-<h3>Encanto Kids Infláveis</h3>
-
-<p>A diversão que transforma sua festa!</p>
-
-<p>📍 Casa Branca-SP e Região</p>
-
-<p>📸 @encantokidsinflaveis</p>
-
-<p>📱 (19) 98904-6698</p>
-
-</footer>
-
-<a class="whatsapp"
+<a
+class="whatsapp"
 href="https://wa.me/5519989046698"
 target="_blank">
 📱
@@ -316,15 +265,37 @@ target="_blank">
 
 <script>
 
-function reservar(produto,valor){
+let reserva =
+JSON.parse(localStorage.getItem('reserva')) || [];
 
-localStorage.setItem('produto',produto);
-localStorage.setItem('valor',valor);
+atualizarContador();
 
-window.location.href='reservas.html';
+function adicionar(nome,preco){
+
+reserva.push({
+nome:nome,
+preco:preco
+});
+
+localStorage.setItem(
+'reserva',
+JSON.stringify(reserva)
+);
+
+atualizarContador();
+
+alert('✅ Produto adicionado à sua reserva!');
+
+}
+
+function atualizarContador(){
+
+document.getElementById('contador').innerText =
+reserva.length;
 
 }
 
 </script>
+
 </body>
 </html>
