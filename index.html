@@ -6,6 +6,8 @@
 
 <title>Encanto Kids Infláveis</title>
 
+<link rel="icon" type="image/png" href="favicon.png">
+
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
@@ -17,10 +19,6 @@ box-sizing:border-box;
 font-family:'Poppins',sans-serif;
 }
 
-html{
-scroll-behavior:smooth;
-}
-
 body{
 background:#f7f9fc;
 color:#333;
@@ -30,7 +28,7 @@ header{
 position:fixed;
 top:0;
 width:100%;
-background:white;
+background:#fff;
 box-shadow:0 2px 10px rgba(0,0,0,.1);
 z-index:1000;
 }
@@ -48,32 +46,27 @@ align-items:center;
 display:flex;
 align-items:center;
 gap:10px;
-font-weight:700;
 font-size:22px;
+font-weight:700;
 color:#0d6efd;
 }
 
-.logo-box{
-width:50px;
+.logo img{
 height:50px;
-border:2px dashed #ff7b00;
-border-radius:10px;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:12px;
-color:#ff7b00;
+width:50px;
+border-radius:50%;
 }
 
 .menu{
 display:flex;
 gap:25px;
+align-items:center;
 }
 
 .menu a{
 text-decoration:none;
-color:#333;
 font-weight:600;
+color:#333;
 transition:.3s;
 }
 
@@ -83,14 +76,10 @@ color:#ff7b00;
 
 .hero{
 height:100vh;
-background:
-linear-gradient(rgba(13,110,253,.75),rgba(255,123,0,.60)),
-url('https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=1600&q=80');
-background-size:cover;
-background-position:center;
+background:linear-gradient(rgba(13,110,253,.8),rgba(255,123,0,.7));
 display:flex;
-align-items:center;
 justify-content:center;
+align-items:center;
 text-align:center;
 padding:20px;
 color:white;
@@ -102,18 +91,18 @@ max-width:900px;
 
 .hero h1{
 font-size:60px;
-margin-bottom:15px;
+margin-bottom:20px;
 }
 
 .hero p{
 font-size:22px;
-margin-bottom:30px;
+margin-bottom:35px;
 }
 
 .buttons{
 display:flex;
-gap:15px;
 justify-content:center;
+gap:15px;
 flex-wrap:wrap;
 }
 
@@ -121,7 +110,7 @@ flex-wrap:wrap;
 padding:15px 30px;
 border-radius:10px;
 text-decoration:none;
-font-weight:600;
+font-weight:700;
 transition:.3s;
 }
 
@@ -150,18 +139,18 @@ margin:auto;
 
 .section-title{
 text-align:center;
-font-size:40px;
-margin-bottom:15px;
+font-size:38px;
 color:#0d6efd;
+margin-bottom:15px;
 }
 
 .section-subtitle{
 text-align:center;
-margin-bottom:50px;
 color:#666;
+margin-bottom:50px;
 }
 
-.features{
+.cards{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
 gap:25px;
@@ -171,8 +160,8 @@ gap:25px;
 background:white;
 padding:30px;
 border-radius:15px;
-box-shadow:0 5px 15px rgba(0,0,0,.08);
 text-align:center;
+box-shadow:0 5px 15px rgba(0,0,0,.08);
 }
 
 .card h3{
@@ -188,15 +177,15 @@ background:white;
 max-width:900px;
 margin:auto;
 text-align:center;
-font-size:18px;
 line-height:1.8;
+font-size:18px;
 }
 
 footer{
 background:#0d6efd;
 color:white;
-padding:40px 20px;
 text-align:center;
+padding:40px 20px;
 }
 
 footer p{
@@ -205,8 +194,8 @@ margin:8px 0;
 
 .whatsapp{
 position:fixed;
-bottom:20px;
 right:20px;
+bottom:20px;
 width:65px;
 height:65px;
 background:#25D366;
@@ -215,9 +204,9 @@ display:flex;
 justify-content:center;
 align-items:center;
 font-size:30px;
-text-decoration:none;
 color:white;
-box-shadow:0 5px 15px rgba(0,0,0,.25);
+text-decoration:none;
+box-shadow:0 5px 15px rgba(0,0,0,.3);
 z-index:999;
 }
 
@@ -232,8 +221,8 @@ font-size:18px;
 }
 
 .menu{
-gap:12px;
 font-size:14px;
+gap:10px;
 }
 
 .logo{
@@ -244,7 +233,6 @@ font-size:18px;
 
 </style>
 </head>
-
 <body>
 
 <header>
@@ -252,19 +240,15 @@ font-size:18px;
 <div class="navbar">
 
 <div class="logo">
-<div class="logo-box">
-LOGO
-</div>
-
-<div>
-Encanto Kids Infláveis
-</div>
+<img src="favicon.png" alt="Logo">
+<span>Encanto Kids Infláveis</span>
 </div>
 
 <div class="menu">
 <a href="index.html">Início</a>
 <a href="brinquedos.html">Brinquedos</a>
-<a href="reservas.html">Reservas</a>
+<a href="carrinho.html">Sua Reserva</a>
+<a href="https://wa.me/5519989046698" target="_blank">WhatsApp</a>
 </div>
 
 </div>
@@ -275,13 +259,11 @@ Encanto Kids Infláveis
 
 <div class="hero-content">
 
-<h1>
-A diversão que transforma sua festa!
-</h1>
+<h1>A diversão que transforma sua festa!</h1>
 
 <p>
-Locação de brinquedos infláveis para aniversários,
-escolas, igrejas e eventos em Casa Branca-SP e região.
+Locação de brinquedos infláveis para festas,
+aniversários e eventos em Casa Branca-SP e região.
 </p>
 
 <div class="buttons">
@@ -309,37 +291,29 @@ Por que escolher a Encanto Kids?
 </h2>
 
 <p class="section-subtitle">
-Compromisso com diversão, qualidade e atendimento.
+Diversão, qualidade e atendimento para tornar sua festa inesquecível.
 </p>
 
-<div class="features">
+<div class="cards">
 
 <div class="card">
 <h3>🎈 Diversão Garantida</h3>
-<p>
-Brinquedos que fazem sucesso em qualquer evento.
-</p>
+<p>Brinquedos que fazem sucesso em qualquer evento.</p>
 </div>
 
 <div class="card">
 <h3>🛡️ Segurança</h3>
-<p>
-Equipamentos preparados para proporcionar tranquilidade.
-</p>
+<p>Equipamentos preparados para garantir tranquilidade.</p>
 </div>
 
 <div class="card">
-<h3>⭐ Atendimento</h3>
-<p>
-Suporte rápido e atendimento personalizado.
-</p>
+<h3>⭐ Atendimento Personalizado</h3>
+<p>Suporte rápido e atenção especial a cada cliente.</p>
 </div>
 
 <div class="card">
-<h3>📍 Região</h3>
-<p>
-Atendimento em Casa Branca-SP e cidades vizinhas.
-</p>
+<h3>🚚 Atendimento Regional</h3>
+<p>Casa Branca-SP e cidades da região.</p>
 </div>
 
 </div>
@@ -359,10 +333,9 @@ Sobre Nós
 <div class="about-box">
 
 <p>
-A Encanto Kids Infláveis atua com locação de brinquedos para festas e eventos,
-levando diversão, alegria e momentos inesquecíveis para crianças e famílias.
-Nosso objetivo é oferecer um serviço confiável, organizado e de qualidade para
-transformar qualquer comemoração em uma experiência especial.
+A Encanto Kids Infláveis é especializada em locação de brinquedos para festas e eventos.
+Nosso objetivo é proporcionar momentos inesquecíveis para crianças e famílias,
+oferecendo equipamentos de qualidade e atendimento profissional.
 </p>
 
 </div>
@@ -375,26 +348,15 @@ transformar qualquer comemoração em uma experiência especial.
 
 <h3>Encanto Kids Infláveis</h3>
 
-<p>
-A diversão que transforma sua festa!
-</p>
+<p>📸 Instagram: @encantokidsinflaveis</p>
 
-<p>
-📍 Casa Branca-SP e Região
-</p>
+<p>📱 WhatsApp: (19) 98904-6698</p>
 
-<p>
-📸 @encantokidsinflaveis
-</p>
-
-<p>
-📱 (19) 98904-6698
-</p>
+<p>📍 Casa Branca-SP e Região</p>
 
 </footer>
 
-<a
-class="whatsapp"
+<a class="whatsapp"
 href="https://wa.me/5519989046698"
 target="_blank">
 📱
