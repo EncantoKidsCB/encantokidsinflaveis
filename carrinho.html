@@ -1,1 +1,324 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Sua Reserva - Encanto Kids Infláveis</title>
+
+<link rel="icon" type="image/png" href="favicon.png">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f5f7fa;
+}
+
+header{
+background:white;
+padding:15px 20px;
+box-shadow:0 2px 10px rgba(0,0,0,.1);
+display:flex;
+justify-content:space-between;
+align-items:center;
+position:sticky;
+top:0;
+z-index:1000;
+}
+
+.logo{
+font-size:22px;
+font-weight:bold;
+color:#0d6efd;
+}
+
+.menu a{
+text-decoration:none;
+margin-left:15px;
+font-weight:bold;
+color:#333;
+}
+
+.container{
+max-width:1000px;
+margin:auto;
+padding:40px 20px;
+}
+
+h1{
+text-align:center;
+color:#0d6efd;
+margin-bottom:30px;
+}
+
+.item{
+background:white;
+padding:20px;
+margin-bottom:15px;
+border-radius:10px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+box-shadow:0 2px 10px rgba(0,0,0,.08);
+}
+
+.info h3{
+margin-bottom:5px;
+}
+
+.preco{
+color:#ff7b00;
+font-weight:bold;
+}
+
+.remover{
+background:#dc3545;
+color:white;
+border:none;
+padding:10px 15px;
+border-radius:8px;
+cursor:pointer;
+}
+
+.resumo{
+background:white;
+padding:25px;
+margin-top:25px;
+border-radius:10px;
+box-shadow:0 2px 10px rgba(0,0,0,.08);
+}
+
+.total{
+font-size:28px;
+font-weight:bold;
+color:#0d6efd;
+margin-top:10px;
+}
+
+.botoes{
+display:flex;
+gap:15px;
+margin-top:25px;
+flex-wrap:wrap;
+}
+
+.btn{
+flex:1;
+padding:15px;
+text-align:center;
+text-decoration:none;
+border-radius:8px;
+font-weight:bold;
+color:white;
+}
+
+.continuar{
+background:#ff7b00;
+}
+
+.finalizar{
+background:#0d6efd;
+}
+
+.limpar{
+background:#dc3545;
+border:none;
+cursor:pointer;
+}
+
+.vazio{
+text-align:center;
+background:white;
+padding:30px;
+border-radius:10px;
+}
+
+.whatsapp{
+position:fixed;
+right:20px;
+bottom:20px;
+width:65px;
+height:65px;
+background:#25D366;
+border-radius:50%;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:30px;
+text-decoration:none;
+color:white;
+}
+
+</style>
+</head>
+<body>
+
+<header>
+
+<div class="logo">
+🎈 Encanto Kids Infláveis
+</div>
+
+<div class="menu">
+<a href="index.html">Início</a>
+<a href="brinquedos.html">Brinquedos</a>
+<a href="carrinho.html">
+📋 Sua Reserva (<span id="contador">0</span>)
+</a>
+</div>
+
+</header>
+
+<div class="container">
+
+<h1>📋 Sua Reserva</h1>
+
+<div id="lista"></div>
+
+<div id="resumo" style="display:none;">
+
+<div class="resumo">
+
+<h2>Resumo da Reserva</h2>
+
+<div class="total">
+Total: R$ <span id="total">0,00</span>
+</div>
+
+<div class="botoes">
+
+<a href="brinquedos.html" class="btn continuar">
+🎈 Continuar Alugando
+</a>
+
+<a href="checkout.html" class="btn finalizar">
+📋 Finalizar Reserva
+</a>
+
+<button class="btn limpar" onclick="limparReserva()">
+🗑️ Limpar Reserva
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<a
+class="whatsapp"
+href="https://wa.me/5519989046698"
+target="_blank">
+📱
+</a>
+
+<script>
+
+let reserva =
+JSON.parse(localStorage.getItem('reserva')) || [];
+
+const lista =
+document.getElementById('lista');
+
+const resumo =
+document.getElementById('resumo');
+
+document.getElementById('contador').innerText =
+reserva.length;
+
+function carregar(){
+
+lista.innerHTML = "";
+
+if(reserva.length === 0){
+
+lista.innerHTML = `
+<div class="vazio">
+<h2>Sua reserva está vazia.</h2>
+<br>
+<a href="brinquedos.html">
+🎈 Escolher Brinquedos
+</a>
+</div>
+`;
+
+resumo.style.display = "none";
+
+return;
+
+}
+
+let total = 0;
+
+reserva.forEach((item,index)=>{
+
+total += item.preco;
+
+lista.innerHTML += `
+<div class="item">
+
+<div class="info">
+<h3>${item.nome}</h3>
+<div class="preco">
+R$ ${item.preco.toFixed(2)}
+</div>
+</div>
+
+<button
+class="remover"
+onclick="remover(${index})">
+Remover
+</button>
+
+</div>
+`;
+
+});
+
+document.getElementById('total').innerText =
+total.toFixed(2).replace(".",",");
+
+resumo.style.display = "block";
+
+}
+
+function remover(index){
+
+reserva.splice(index,1);
+
+localStorage.setItem(
+'reserva',
+JSON.stringify(reserva)
+);
+
+location.reload();
+
+}
+
+function limparReserva(){
+
+if(confirm('Deseja limpar toda a reserva?')){
+
+localStorage.removeItem('reserva');
+
+location.reload();
+
+}
+
+}
+
+carregar();
+
+</script>
+
+</body>
+</html>
