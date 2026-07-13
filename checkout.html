@@ -1,1 +1,386 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Finalizar Reserva - Encanto Kids Infláveis</title>
+
+<link rel="icon" type="image/png" href="favicon.png">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f5f7fa;
+}
+
+header{
+background:white;
+padding:15px 20px;
+box-shadow:0 2px 10px rgba(0,0,0,.1);
+display:flex;
+justify-content:space-between;
+align-items:center;
+position:sticky;
+top:0;
+z-index:1000;
+}
+
+.logo{
+font-size:22px;
+font-weight:bold;
+color:#0d6efd;
+}
+
+.menu a{
+text-decoration:none;
+margin-left:15px;
+font-weight:bold;
+color:#333;
+}
+
+.container{
+max-width:900px;
+margin:auto;
+padding:40px 20px;
+}
+
+.form-box{
+background:white;
+padding:30px;
+border-radius:12px;
+box-shadow:0 2px 10px rgba(0,0,0,.08);
+}
+
+h1{
+text-align:center;
+color:#0d6efd;
+margin-bottom:25px;
+}
+
+label{
+display:block;
+margin-top:15px;
+margin-bottom:5px;
+font-weight:bold;
+}
+
+input, textarea{
+width:100%;
+padding:12px;
+border:1px solid #ccc;
+border-radius:8px;
+}
+
+textarea{
+resize:vertical;
+}
+
+.resumo{
+background:#f8f9fa;
+padding:15px;
+border-radius:8px;
+margin-bottom:20px;
+}
+
+.item{
+margin-bottom:8px;
+}
+
+.total{
+font-size:22px;
+font-weight:bold;
+color:#0d6efd;
+margin-top:10px;
+}
+
+.confirmacao{
+margin-top:20px;
+display:flex;
+align-items:flex-start;
+gap:10px;
+}
+
+.confirmacao input{
+width:auto;
+margin-top:4px;
+}
+
+.btn{
+width:100%;
+padding:15px;
+margin-top:25px;
+background:#0d6efd;
+color:white;
+border:none;
+border-radius:8px;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.btn:hover{
+opacity:.9;
+}
+
+.whatsapp{
+position:fixed;
+right:20px;
+bottom:20px;
+width:65px;
+height:65px;
+background:#25D366;
+border-radius:50%;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:30px;
+text-decoration:none;
+color:white;
+}
+
+</style>
+</head>
+<body>
+
+<header>
+
+<div class="logo">
+🎈 Encanto Kids Infláveis
+</div>
+
+<div class="menu">
+<a href="index.html">Início</a>
+<a href="brinquedos.html">Brinquedos</a>
+<a href="carrinho.html">Sua Reserva</a>
+</div>
+
+</header>
+
+<div class="container">
+
+<div class="form-box">
+
+<h1>📋 Finalizar Reserva</h1>
+
+<div class="resumo">
+
+<h3>Itens Reservados</h3>
+
+<div id="itens"></div>
+
+<div class="total">
+Total: R$ <span id="total">0,00</span>
+</div>
+
+</div>
+
+<label>Nome Completo *</label>
+<input type="text" id="nome">
+
+<label>Telefone / WhatsApp *</label>
+<input type="text" id="telefone">
+
+<label>Cidade *</label>
+<input type="text" id="cidade">
+
+<label>Estado *</label>
+<input type="text" id="estado">
+
+<label>Endereço Completo *</label>
+<input type="text" id="endereco">
+
+<label>Bairro *</label>
+<input type="text" id="bairro">
+
+<label>Número *</label>
+<input type="text" id="numero">
+
+<label>Complemento</label>
+<input type="text" id="complemento">
+
+<label>Data do Evento *</label>
+<input type="date" id="data">
+
+<label>Horário do Evento *</label>
+<input type="time" id="horario">
+
+<label>Observações</label>
+<textarea id="obs" rows="4"></textarea>
+
+<div class="confirmacao">
+
+<input type="checkbox" id="confirmar">
+
+<label for="confirmar">
+Confirmo que os dados informados estão corretos e autorizo o contato da Encanto Kids Infláveis para confirmação da reserva.
+</label>
+
+</div>
+
+<button class="btn" onclick="enviarReserva()">
+📱 Enviar Reserva pelo WhatsApp
+</button>
+
+</div>
+
+</div>
+
+<a class="whatsapp"
+href="https://wa.me/5519989046698"
+target="_blank">
+📱
+</a>
+
+<script>
+
+let reserva =
+JSON.parse(localStorage.getItem('reserva')) || [];
+
+let total = 0;
+
+const itensDiv =
+document.getElementById('itens');
+
+reserva.forEach(item=>{
+
+total += item.preco;
+
+itensDiv.innerHTML += `
+<div class="item">
+• ${item.nome} — R$ ${item.preco.toFixed(2)}
+</div>
+`;
+
+});
+
+document.getElementById('total').innerText =
+total.toFixed(2).replace(".",",");
+
+function enviarReserva(){
+
+if(reserva.length === 0){
+
+alert("Sua reserva está vazia.");
+
+return;
+
+}
+
+const nome =
+document.getElementById('nome').value;
+
+const telefone =
+document.getElementById('telefone').value;
+
+const cidade =
+document.getElementById('cidade').value;
+
+const estado =
+document.getElementById('estado').value;
+
+const endereco =
+document.getElementById('endereco').value;
+
+const bairro =
+document.getElementById('bairro').value;
+
+const numero =
+document.getElementById('numero').value;
+
+const complemento =
+document.getElementById('complemento').value;
+
+const data =
+document.getElementById('data').value;
+
+const horario =
+document.getElementById('horario').value;
+
+const obs =
+document.getElementById('obs').value;
+
+const confirmar =
+document.getElementById('confirmar').checked;
+
+if(
+!nome ||
+!telefone ||
+!cidade ||
+!estado ||
+!endereco ||
+!bairro ||
+!numero ||
+!data ||
+!horario
+){
+
+alert("Preencha todos os campos obrigatórios.");
+
+return;
+
+}
+
+if(!confirmar){
+
+alert("Confirme os dados antes de continuar.");
+
+return;
+
+}
+
+let itensTexto = "";
+
+reserva.forEach(item=>{
+
+itensTexto +=
+`• ${item.nome} - R$ ${item.preco.toFixed(2)}\n`;
+
+});
+
+const mensagem =
+`🎈 NOVA SOLICITAÇÃO DE RESERVA
+
+👤 CLIENTE
+Nome: ${nome}
+Telefone: ${telefone}
+
+📍 ENDEREÇO
+${endereco}, ${numero}
+Bairro: ${bairro}
+Complemento: ${complemento}
+Cidade: ${cidade}
+Estado: ${estado}
+
+📅 EVENTO
+Data: ${data}
+Horário: ${horario}
+
+🎠 ITENS RESERVADOS
+${itensTexto}
+
+💰 TOTAL
+R$ ${total.toFixed(2)}
+
+📝 OBSERVAÇÕES
+${obs}`;
+
+const url =
+"https://wa.me/5519989046698?text=" +
+encodeURIComponent(mensagem);
+
+window.open(url,"_blank");
+
+}
+
+</script>
+
+</body>
+</html>
